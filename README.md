@@ -1,53 +1,40 @@
-# Token–QBloch: PolSAR ship candidate verification
+# Token–QBloch Fusion for PolSAR Ship Candidate Verification
 
-**Status:** Private, research staging repository. **Not yet an independently reproduced public release.**
+**Research status:** Private staging repository supporting SEQUENCE 2026 Paper #67. Portable synthetic notebook smoke tests pass; a clean independent reproduction on FPSD has **not** yet been performed.
 
-Supporting materials for SEQUENCE 2026 Paper #67, *Quantum-Inspired Bloch Feature Fusion for Full-Polarimetric SAR Ship Candidate Verification* (S. P. Gunasekar and P. K. Rangarajan).
+## Research
 
-## Scientific scope
+Two-stage ship candidate detection and verification using PolSAR coherency-derived features, TinyViT tokens and a quantum-inspired three-qubit Bloch representation. The latter runs on a classical simulator, not on quantum hardware.
 
-A two-stage framework uses a detector to propose ship candidates, followed by a lightweight verifier that consumes image and full-polarimetric SAR features. Comparisons include a token-only TinyViT baseline, a classical fusion control, a quantum-inspired Bloch feature fusion, and ablations.
+**Camera-ready correction:** Two layers × three qubits × three trainable rotations (Rz–Ry–Rz) per qubit = **18** quantum-branch parameters, not 12. Thus the Token–QBloch verifier has **10,547** parameters and its classical fusion control **10,629**; the difference **82** matches the branches (100−18). The diagram and text in the paper also need to reflect the implemented CNOT sequence.
 
-The *quantum-inspired* model is a **classical simulation**, not a claim of a quantum speedup or quantum-hardware execution.
+## Archived EXP37 results
 
-## Important camera-ready correction
+`results/summary/` contains ten-seed (42–51) metrics and analysis tables from the archived June 19 EXP37 run. Token–QBloch AP **0.6425 ± 0.0128**, AUC **0.8242 ± 0.0070**, F1 **0.6652 ± 0.0131**. Classical fusion AUC **0.8141 ± 0.0071**. Paired seed-level AUC gain **+0.0101**, Wilcoxon two-sided p **0.006**. Candidate-level paired bootstrap gain **+0.0070** with 95% CI **[+0.0006,+0.0138]**. Image-level bootstrap has **not** been established.
 
-The experimental implementation uses two layers of a three-qubit, three-trainable-rotation-per-qubit ansatz: **2 × 3 × 3 = 18** trainable branch angles. The original manuscript incorrectly stated **12** for that branch. With 18 (not 12), the parameter accounting is consistent:
+These CSVs are an audited result archive, not freshly regenerated measurements.
 
-| Model | Branch trainable parameters | Total trainable parameters |
-|---|---:|---:|
-| Token–QBloch Fusion | 18 | 10,547 |
-| Token–Control Fusion | 100 | 10,629 |
+## Files
 
-The model totals differ by **82**, as do the branch counts. The description and circuit diagram require camera-ready corrections. See [architecture notes](docs/ARCHITECTURE_CORRECTIONS.md).
+- `notebooks/`: two sanitized EXP37 notebooks with environment-driven paths, no stored outputs, and safe synthetic default.
+- `results/summary/`: six archived CSV tables.
+- `configs/config.example.json`: illustrative configuration (not an original run manifest).
+- `docs/`: architecture correction, portability, statistical provenance and release checklist.
+- `scripts/verify_archived_results.py`, `tests/`: internal data-consistency and portability checks.
 
-## Archived results
+## Quick start
 
-CSV files in [results/summary](results/summary/) are source records from the EXP37 experiment folder, including a ten-seed grid (seeds 42–51) and paired/bootstrap analyses.
+```bash
+python -m pip install -r requirements.txt
+python scripts/verify_archived_results.py
+python -m unittest discover -s tests -v
+jupyter lab
+```
 
-Key archived ten-seed results:
-- Token–QBloch Fusion: AP 0.6425 ± 0.0128; AUC 0.8242 ± 0.0070; F1 0.6652 ± 0.0131.
-- Classical fusion control: AUC 0.8141 ± 0.0071.
-- Paired AUC difference: +0.0101 ± 0.0072, Wilcoxon two-sided p = 0.006.
-- Candidate-level paired bootstrap AUC gain: +0.0070, 95% CI [+0.0006, +0.0138] (2,000 resamples).
+Run Jupyter from the repository root; **Run All** in either notebook uses synthetic data by default. Full FPSD requires your own authorized dataset, pretrained detector, verified split mapping and `POLSAR_*` environment variables. See [portability guide](docs/PORTABILITY.md).
 
-These figures are **archived analysis outputs**, not evidence that the entire pipeline has been rerun here from raw data.
+## Boundaries and licensing
 
-## Repository contents
+No dataset imagery, trained checkpoints, signed forms, or credentials are included. External FPSD data and YOLO/Ultralytics weights and redistribution require a rights assessment. **No open-source license has been selected yet.** Keep the repo private until full-path and rights audits are complete. Notebooks retain the original model/statistics logic but *were not independently rerun on raw FPSD* here.
 
-- `results/summary/`: archived, tabular experiment outputs from the Drive EXP37 folder.
-- `configs/config.example.json`: sanitized example settings, not a frozen exact reproduction config.
-- `docs/`: corrections, provenance, and release-gating requirements.
-- `notebooks/`: staging notes; cleaned notebooks are **not committed in this initial repository import**.
-
-## Reproducibility boundaries
-
-The original notebooks use Google Colab/Drive paths, cached candidate inputs and pretrained detector weights. Before claiming independent reproduction, we must provide code, environment locks, provenance/hashes, data access instructions, prediction artifacts and full re-execution checks. See [release readiness](docs/RELEASE_READINESS.md).
-
-## Data and license
-
-**Do not upload raw FPSD data, detector weights, patient or personal data, credentials, or private Drive links.** Verify dataset redistribution and third-party library/weight licensing before publishing a public release. No open-source license is granted by this repository at this stage.
-
-## Manuscript
-
-The camera-ready revision must be checked against both SEQUENCE 2026 technical and formatting reports before proceeding to the publisher.
+**Manuscript:** SEQUENCE 2026 Paper #67, Sakthi Prabhu Gunasekar and Prasanna Kumar Rangarajan. Official DOI to be added only when publisher issues one.

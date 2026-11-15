@@ -1,32 +1,40 @@
-# Data and model weights
-data/
-datasets/
-FPSD/
-*.pt
-*.pth
-*.ckpt
-*.onnx
-*.weights
-*.npz
-*.npy
-*.tif
-*.tiff
-*.h5
-*.hdf5
-*.pkl
-*.pickle
-
-# Secrets and environment
+# Sensitive files and local environments
 .env
 .env.*
 !.env.example
 *.pem
 *.key
 credentials.json
-secrets.json
-token.json
+service_account*.json
+kaggle.json
+*.p12
+*.pfx
+secrets/
+private/
 
-# Python and notebooks
+# Raw data, caches, weights and checkpoints
+raw_data/
+data/
+datasets/
+cache/
+caches/
+checkpoints/
+weights/
+outputs/
+logs/
+runs/
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+*.tif
+*.tiff
+*.h5
+*.hdf5
+*.parquet
+
+# Python/Jupyter
 __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
@@ -35,17 +43,14 @@ venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-dist/
-build/
-*.egg-info/
-
-# Logs, local artifacts and output
-logs/
-runs/
-outputs/
-checkpoints/
-artifacts/
-wandb/
-mlruns/
 .DS_Store
-Thumbs.db
+
+# Build/submission forms
+*.aux
+*.log
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.bbl
+*.blg
+submission_forms/

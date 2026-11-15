@@ -1,7 +1,8 @@
-# Notebook ingestion
+# EXP37 notebooks (staged)
 
-The inspected original EXP37 notebooks exist in the author's Google Drive and in the prepared private starter package, but are not yet included in the GitHub commit.
+- `EXP37_FINAL_CLEAN_20260615_TOKEN_QBLOCH_FIDELITY.ipynb`: token baseline, quantum/classical fusion, detector-confidence helper, synthetic test.
+- `EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb`: entanglement ablations (M1), bootstrap confidence intervals (M2) and candidate-level paired bootstrap (M2b).
 
-Before importing, preserve the code, strip saved outputs, validate notebook JSON, inspect for credentials/private paths, and compare content hashes with the archived author-approved copies.
+Changes from Drive originals: removed stored cell outputs, replaced hard-coded Colab/Drive paths with `POLSAR_*` settings, defaulted to safe synthetic run, removed stale path diagnostics/forced installs, disabled data-leaking validation-to-training fallback, and made detector-only helper optional in dry-run.
 
-The notebooks remain research artifacts until a clean-data run verifies the reported tables.
+**Verification:** both notebooks completed a synthetic run-all with `NOTEBOOK_SELF_TEST` passing. End-to-end FPSD data execution is not yet independently verified. See `docs/PORTABILITY.md`.

@@ -1,0 +1,28 @@
+{
+  "provenance": "Checkpoint-level CPU re-evaluation of original 10-seed Token–QBloch and classical-control models using the original archived FPSD validation cache; not raw-image regeneration.",
+  "audit_date": "2026-11-15",
+  "seeds": [
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+  ],
+  "checkpoints_checked": 20,
+  "validation_cache_sha256": "08f7f2b9e2136ede49e711b114d0757d126370f421299b553fd69c749d63e8d0",
+  "candidate_count": 1074,
+  "positive_candidates": 355,
+  "negative_candidates": 719,
+  "quantum_auc_mean": 0.824188916531176,
+  "quantum_auc_sample_sd": 0.007041253765229546,
+  "classical_auc_mean": 0.8140896001880545,
+  "classical_auc_sample_sd": 0.007152946045809028,
+  "paired_auc_mean_delta": 0.010099316343121246,
+  "wilcoxon_2s_p": 0.005859375,
+  "caution": "Minor per-seed CPU vs original-run numerical differences observed; no independent candidate generation, raw FPSD integrity, or image-level bootstrap validated."
+}

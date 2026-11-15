@@ -1,23 +1,28 @@
-# Release readiness — private research staging
+# Release-readiness audit — 15 November 2026
 
-## Verified
+**Current GitHub visibility: PRIVATE. No automatic public visibility change approved.**
 
-- [x] Repository remains private.
-- [x] Eight registered model variants × ten seeds have archived EXP37 per-seed result rows.
-- [x] Main AP/AUC/F1 summaries, parameter totals, seed-level Wilcoxon and candidate-level bootstrap CSVs are internally consistent.
-- [x] Corrected branch accounting documented: 18 quantum angles versus 100 classical branch parameters.
-- [x] Both notebooks stripped of saved outputs and user-specific absolute paths.
-- [x] Both notebooks passed synthetic CPU Run All and their built-in self-tests (2026-11-15).
-- [x] A static notebook integrity test and an archived-CSV consistency check were prepared.
+## Verified in this repository
 
-## Still needed before public release
+- [x] Two portable original EXP37 notebooks, outputs stripped, original scientific code retained.
+- [x] Archived table integrity: eight variants × seeds 42–51.
+- [x] Correct branch counts (18 vs 100) and total parameters (10,547 vs 10,629).
+- [x] Scientific unit tests for unitarity, Pauli-Y Bloch convention, model counts and finite output.
+- [x] Local end-to-end synthetic notebook run.
+- [x] A checkpoint-level CPU replay of 20 archived QBloch/control models on the original held-out cache: quantum AUC ~0.824189, classical AUC ~0.814090, paired p ~0.005859.
+- [x] Candidate-cache provenance now incorporates detector/annotation identity, and cache retains aligned candidate image metadata.
+- [x] Prediction-level paired bootstrap can be recomputed from saved per-candidate NPZs without raw FPSD.
+- [x] Raw imagery and model weight binaries excluded.
 
-- [ ] Reproduce end-to-end detector generation and verifier evaluation with a clean environment using exact FPSD split, detector weights and candidate cache.
-- [ ] Verify model weight/checkpoint and dataset hashes and record original June 2026 environment package versions.
-- [ ] Export and validate per-candidate predictions and IDs; assess image-level bootstrap if making that claim.
-- [ ] Verify no train/validation sample leakage and check cache invalidation on different weights/datasets.
-- [ ] Audit FPSD redistribution rights; audit Ultralytics/third-party code and weights licenses.
-- [ ] Audit paper/source and bibliography against camera-ready corrections and final publisher approval.
-- [ ] Decide a code license based on provenance; do not assume original notebook dependencies are redistributable.
+## Still outstanding for a *complete public, independently reproducible FPSD paper artifact*
 
-Do **not** present the synthetic smoke test as independent validation of results on FPSD.
+- [ ] Independently process original FPSD TIF+JPG source files and train/evaluate the historical PauliYOLOv8n detector.
+- [ ] Independently rebuild candidate caches, verify data split/image overlap, train all 80 checkpoints and match published metrics.
+- [ ] Establish exact package versions from the original June 2026 environment and full source-image checksums.
+- [ ] Confirm FPSD data redistribution rights and Ultralytics software/weight licensing compatibility.
+- [ ] Choose an author-approved repository LICENSE.
+- [ ] Inspect entire repository history, not only its latest tree, for secrets/restricted third-party data.
+
+**Allowed description:** research code with verified checkpoint-level replication and executable synthetic testing.
+
+**Not yet supported:** independently reproduced from original raw FPSD; licensed unrestricted public release; quantum hardware advantage; improved end-to-end detector mAP.

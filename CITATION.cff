@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Please cite the SEQUENCE 2026 research paper and this software when reusing the methodology."
+type: software
+title: "Token–QBloch Fusion for PolSAR Ship Candidate Verification"
+authors:
+  - family-names: Gunasekar
+    given-names: Sakthi Prabhu
+  - family-names: Rangarajan
+    given-names: Prasanna Kumar
+repository-code: "https://github.com/SakthiGs/polsar-token-qbloch"
+abstract: "Research code, tests, and reproducibility artifacts for classically simulated Bloch feature fusion in PolSAR ship candidate verification."

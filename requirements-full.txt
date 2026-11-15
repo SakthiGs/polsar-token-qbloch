@@ -1,5 +1,6 @@
 -r requirements.txt
-# Full FPSD extraction / detector. Requires external images and weights.
+# Full FPSD extraction requires authorized external imagery and weights.
 ultralytics
 rasterio>=1.3,<2
+tifffile>=2024.1
 pycocotools>=2.0.7

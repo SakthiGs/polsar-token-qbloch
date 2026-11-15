@@ -1,0 +1,19 @@
+name: Research archive checks
+on:
+  push:
+  pull_request:
+
+jobs:
+  static-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify archived result summaries
+        run: python scripts/verify_archived_results.py
+      - name: Check notebook portability
+        run: python -m unittest discover -s tests -v

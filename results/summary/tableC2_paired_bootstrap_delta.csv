@@ -1,0 +1,4 @@
+comparison,level,b_boot,delta_mean,ci_lo,ci_hi,excludes_zero,boot_p_2s,delta_ci95
+Token_Arch2Quantum_Fusion - Token_Arch2Control_Fusion,candidate,2000,0.007015586939033327,0.000598918788657643,0.013767702070164464,True,0.032,"+0.0070 [+0.0006, +0.0138]"
+Token_Arch2Quantum_Fusion_NoEnt - Token_Arch2Control_Fusion,candidate,2000,0.0009551149815243787,-0.005481011845496084,0.007775636598770559,False,0.788,"+0.0010 [-0.0055, +0.0078]"
+Token_Arch2Quantum_Fusion - Token_Arch2Quantum_Fusion_NoEnt,candidate,2000,0.006060471957508948,0.0011128569397218597,0.010967331400912838,True,0.02,"+0.0061 [+0.0011, +0.0110]"

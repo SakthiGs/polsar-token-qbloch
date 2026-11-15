@@ -1,0 +1,8 @@
+comparison,metric,delta,pos,wilcoxon_2s,ttest_1s,sig
+Arch2_Quantum_Ent - Arch2_Control,AUC,+0.0165±0.0236,8/10,0.014,0.027,*
+Token_Arch2Quantum_Fusion - Token_Arch2Control_Fusion,AUC,+0.0101±0.0072,9/10,0.006,0.001,**
+Token_Arch2Quantum_Fusion - TokenBaseline_TinyViT,AUC,+0.0303±0.0192,10/10,0.002,0.000,**
+Token_Arch2Quantum_Fusion_FidelityAttention - Token_Arch2Quantum_Fusion,AUC,-0.0289±0.0138,1/10,0.004,1.000,**
+Token_Arch2Quantum_Fusion_FidelityAttention - Token_Arch2Control_Fusion,AUC,-0.0188±0.0138,1/10,0.006,0.999,**
+Token_Arch2Quantum_Fusion_FidelityAttention - TokenBaseline_TinyViT,AUC,+0.0015±0.0173,3/10,0.922,0.398,n.s.
+Token_Arch2Quantum_Fusion_FidelityAttention - Arch2_Quantum_Ent,AUC,+0.0171±0.0149,9/10,0.006,0.003,**

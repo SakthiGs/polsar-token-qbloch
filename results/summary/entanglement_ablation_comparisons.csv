@@ -1,0 +1,10 @@
+metric,comparison,first,second,n,mean_delta,std_delta,positive_seeds,wilcoxon_2s,wilcoxon_1s,ttest_1s
+roc_auc,Arch2_Quantum_Ent - Arch2_Quantum_NoEnt,Arch2_Quantum_Ent,Arch2_Quantum_NoEnt,10,-0.0025150345746243973,0.009646501654267926,3,0.4921875,0.7841796875,0.7845095207638965
+roc_auc,Token_Arch2Quantum_Fusion - Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Quantum_Fusion,Token_Arch2Quantum_Fusion_NoEnt,10,0.0051409430155340274,0.009859478173202395,4,0.556640625,0.2783203125,0.06678658369492482
+roc_auc,Token_Arch2Quantum_Fusion_NoEnt - Token_Arch2Control_Fusion,Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Control_Fusion,10,0.0049513212795549875,0.011527646933827882,6,0.232421875,0.1162109375,0.10372612580303053
+avg_precision,Arch2_Quantum_Ent - Arch2_Quantum_NoEnt,Arch2_Quantum_Ent,Arch2_Quantum_NoEnt,10,-0.00914813429634479,0.013439086665081475,4,0.130859375,0.947265625,0.9701082717315592
+avg_precision,Token_Arch2Quantum_Fusion - Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Quantum_Fusion,Token_Arch2Quantum_Fusion_NoEnt,10,0.009313203418711646,0.010740265125715303,8,0.01953125,0.009765625,0.011384507723707225
+avg_precision,Token_Arch2Quantum_Fusion_NoEnt - Token_Arch2Control_Fusion,Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Control_Fusion,10,0.001628319249356347,0.014049419949284367,5,0.76953125,0.384765625,0.3612278186439967
+f1,Arch2_Quantum_Ent - Arch2_Quantum_NoEnt,Arch2_Quantum_Ent,Arch2_Quantum_NoEnt,10,0.00012657150131228923,0.016478276631250576,6,0.76953125,0.384765625,0.4905757349303724
+f1,Token_Arch2Quantum_Fusion - Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Quantum_Fusion,Token_Arch2Quantum_Fusion_NoEnt,10,0.000659210370734864,0.015364726713605378,4,1.0,0.5390625,0.44753224564258903
+f1,Token_Arch2Quantum_Fusion_NoEnt - Token_Arch2Control_Fusion,Token_Arch2Quantum_Fusion_NoEnt,Token_Arch2Control_Fusion,10,0.011493814111800494,0.017760934447383185,8,0.064453125,0.0322265625,0.03551097199208558

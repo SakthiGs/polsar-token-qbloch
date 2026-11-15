@@ -28,12 +28,12 @@ The original archive holds eight models × ten seeds (42–51).
 
 ## Quick start
 
-`~
+```
 python -m pip install -r requirements.txt
 python scripts/verify_archived_results.py
 python -m unittest discover -s tests -v
 python scripts/run_exp37.py --mode synthetic --timeout 300
-`~
+```
 
 The default executes the canonical notebook on **synthetic data**, not FPSD. For optional checkpoint replay, prediction-level bootstrap and full raw-data prerequisites, see [reproduction guide](docs/REPRODUCING_EXPERIMENT.md).
 

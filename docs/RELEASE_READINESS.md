@@ -14,7 +14,7 @@
 - [x] Candidate-cache invalidation includes detector/annotation fingerprints and aligned metadata; bootstrapping from per-candidate predictions is supported when assets are supplied.
 - [x] No raw imagery, feature-cache binary or weights in any of the 11 reachable main-history Git trees inspected.
 - [x] Sources and limits for FPSD and Ultralytics licensing documented.
-- [x] Later \`pip_freeze.txt\` rejected as falsely representing the original June 2026 environment.
+- [x] Later `pip_freeze.txt` rejected as falsely representing the original June 2026 environment.
 
 ## Blocking a claim of complete, independently reproduced raw-data research
 
@@ -29,7 +29,7 @@
 - [ ] Verify FPSD rights for every redistributed artifact; keep raw data excluded unless permissions are explicit.
 - [ ] Review Ultralytics AGPL obligations and detector weight distribution before choosing public repository rights.
 - [ ] Run full-history secrets/PII scan across all refs and manually review flagged content.
-- [ ] Await confirmed publisher metadata and DOI, then update \`CITATION.cff\` and create a reviewed release tag.
+- [ ] Await confirmed publisher metadata and DOI, then update `CITATION.cff` and create a reviewed release tag.
 - [ ] Obtain explicit authorization before changing GitHub visibility from Private to Public.
 
 ## Distinguish two release levels

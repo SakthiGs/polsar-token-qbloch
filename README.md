@@ -8,9 +8,9 @@ This repository contains the experiment implementation, archived statistical res
 
 ## Main architecture
 
-The following diagram follows the actual \`EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb\` implementation. **QBloch is quantum-inspired and simulated on classical hardware.**
+The following diagram follows the actual `EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb` implementation. **QBloch is quantum-inspired and simulated on classical hardware.**
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     A["FPSD PolSAR image<br/>nine real-valued C9 channels"] --> B["Stage 1: PauliYOLOv8n<br/>ship candidate proposals"]
     B --> C["Candidate-centered chip<br/>64 × 64 pixels"]
@@ -30,7 +30,7 @@ flowchart TD
     K --> L["Linear projection 20D → 32D<br/>CLS token + position embedding"]
     L --> M["One transformer encoder layer<br/>4 attention heads"]
     M --> N["Binary candidate verifier<br/>Ship / false alarm score"]
-\`\`\`
+```
 
 **What is fused:** 36 local *classical* 8D tokens are concatenated **per patch** with 36 *quantum-inspired* 12D Pauli-readout vectors. The final transformer learns a candidate-level decision. The CNOT ring does **not** operate on quantum hardware.
 
@@ -64,16 +64,16 @@ The archived seed-paired AUC gain is **+0.0101** (two-sided Wilcoxon **p ≈ 0.0
 
 Use Python 3.11 or a compatible supported environment:
 
-\`\`\`bash
+```bash
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
 python scripts/verify_archived_results.py
 python -m unittest discover -s tests -v
 python scripts/run_exp37.py --mode synthetic --timeout 300
-\`\`\`
+```
 
-The last command runs on **generated synthetic test inputs** only. It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using \`.venv\Scripts\activate\`.
+The last command runs on **generated synthetic test inputs** only. It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using `.venv\Scripts\activate`.
 
 For lawful access to FPSD, original PauliYOLO weights and the full experiment path, see [reproducing the experiment](docs/REPRODUCING_EXPERIMENT.md) and [data access](docs/DATA_ACCESS.md). No dataset, cached features, or model weights are distributed here.
 
@@ -95,7 +95,7 @@ For lawful access to FPSD, original PauliYOLO weights and the full experiment pa
 
 - Do not upload third-party FPSD imagery, labels, raw feature caches or pretrained YOLO weights without explicit permission and compatible licenses.
 - Ultralytics software and default models use **AGPL-3.0** unless separately licensed; derivative-work compliance needs author review. See [licensing assessment](docs/LICENSE_AND_RIGHTS.md).
-- The original 2026 training environment is **not** established by a later \`pip freeze\` file.
+- The original 2026 training environment is **not** established by a later `pip freeze` file.
 - Add the publisher-issued **DOI**, bibliographic details and versioned release tag to [CITATION.cff](CITATION.cff) only after the paper is published.
 
-No software \`LICENSE\` is present yet: the repository is **not currently offered as open-source licensed code**. Public visibility is a separate action that requires explicit author approval; none is being taken here.
+No software `LICENSE` is present yet: the repository is **not currently offered as open-source licensed code**. Public visibility is a separate action that requires explicit author approval; none is being taken here.

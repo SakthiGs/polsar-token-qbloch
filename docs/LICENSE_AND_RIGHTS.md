@@ -10,7 +10,7 @@ The accessible public FPSD GitHub root showed a dataset README, COCO/VOC folders
 
 ### YOLO / Ultralytics
 
-Ultralytics' current license page, https://www.ultralytics.com/license, explains AGPL-3.0 versus Enterprise options for its code and trained/fine-tuned models. It states that certain derivative open-source workflows must comply with **AGPL-3.0** requirements, potentially including corresponding application source and model weights. This research repo deliberately excludes Ultralytics vendor code and original detector weights; its optional full-FPSD path imports \`ultralytics\` when the user installs it.
+Ultralytics' current license page, https://www.ultralytics.com/license, explains AGPL-3.0 versus Enterprise options for its code and trained/fine-tuned models. It states that certain derivative open-source workflows must comply with **AGPL-3.0** requirements, potentially including corresponding application source and model weights. This research repo deliberately excludes Ultralytics vendor code and original detector weights; its optional full-FPSD path imports `ultralytics` when the user installs it.
 
 **Do not assume omission of binaries automatically resolves AGPL compliance.** The project owner and coauthor must choose a licensing/distribution strategy compatible with all incorporated dependencies and code provenance. Consult the upstream terms, including https://docs.ultralytics.com/help/contributing, before choosing a project license.
 
@@ -22,4 +22,4 @@ Authorship of the paper is not automatically proof that one researcher alone hol
 
 A code-only public repository can document what is and is not reproducible without embedding raw data/weights. It must not promise an out-of-box raw-FPSD reproduction when original dataset and stage-one detector assets are external.
 
-No specific code license has been approved. **The repository intentionally has no \`LICENSE\` file at present.** Making a repo public without one is not an open-source license.
+No specific code license has been approved. **The repository intentionally has no `LICENSE` file at present.** Making a repo public without one is not an open-source license.

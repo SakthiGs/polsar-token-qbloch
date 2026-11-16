@@ -1,18 +1,18 @@
 # Implemented EXP37 architecture — source-aligned technical note
 
-**Primary source:** \`notebooks/EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb\`, specifically the candidate-token routines and \`ThreeQubitUnitary\`, \`Arch2QuantumFeature\`, \`Arch2ControlFeature\`, \`TokenArch2Fusion\`, and \`SharedPoolHead\`.
+**Primary source:** `notebooks/EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb`, specifically the candidate-token routines and `ThreeQubitUnitary`, `Arch2QuantumFeature`, `Arch2ControlFeature`, `TokenArch2Fusion`, and `SharedPoolHead`.
 
 ## Data path
 
 1. **Candidate proposals**: PauliYOLOv8n; inference conf=0.001, NMS IoU=0.65, max detections=300.
 2. **ROI chip**: 64×64 pixels of nine real-valued channels:
-   \`C11, Re(C12), Im(C12), Re(C13), Im(C13), C22, Re(C23), Im(C23), C33\`. These reconstruct a Hermitian 3×3 complex matrix C for each pixel.
+   `C11, Re(C12), Im(C12), Re(C13), Im(C13), C22, Re(C23), Im(C23), C33`. These reconstruct a Hermitian 3×3 complex matrix C for each pixel.
 3. **Spatial tokens**: 6×6 grid, so 36 patches. Patch-aggregated C is normalized by span to form a complex 3×3 rho; each patch produces an 8-vector:
-   \`[log1p(span), |g12|, |g13|, |g23|, arg(g12)/pi, arg(g13)/pi, arg(g23)/pi, normalized eigen-entropy]\`.
+   `[log1p(span), |g12|, |g13|, |g23|, arg(g12)/pi, arg(g13)/pi, arg(g23)/pi, normalized eigen-entropy]`.
 4. **QBloch states**: three 2×2 polarization-pair density matrices from pairs (0,1), (0,2), (1,2), using normalized pairwise Stokes/Bloch coordinates. Tensor product gives a simulated 8×8 three-qubit density matrix. No QPU is used.
-5. **Trainable circuit**: two layers of \`Rz–Ry–Rz\` for each of three qubits; after **each layer**, apply the CNOT ring in sequence \`0→1\`, \`1→2\`, \`2→0\`. The ordering matches the matrix composition in \`ThreeQubitUnitary.matrix()\`.
-6. **Observables**: nine single-qubit \`X/Y/Z\` expectations plus three pair \`ZZ\` expectations yield **12 real-valued features per patch**.
-7. **Fusion**: concatenate 8 classical and 12 QBloch features to 20 per-patch features, linearly project to \`d_model=32\`, append a learned CLS token and positions, run one 4-head transformer encoder layer, then binary classification.
+5. **Trainable circuit**: two layers of `Rz–Ry–Rz` for each of three qubits; after **each layer**, apply the CNOT ring in sequence `0→1`, `1→2`, `2→0`. The ordering matches the matrix composition in `ThreeQubitUnitary.matrix()`.
+6. **Observables**: nine single-qubit `X/Y/Z` expectations plus three pair `ZZ` expectations yield **12 real-valued features per patch**.
+7. **Fusion**: concatenate 8 classical and 12 QBloch features to 20 per-patch features, linearly project to `d_model=32`, append a learned CLS token and positions, run one 4-head transformer encoder layer, then binary classification.
 
 ## Main-model parameter count
 

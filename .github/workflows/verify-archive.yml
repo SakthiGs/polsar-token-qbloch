@@ -10,6 +10,10 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan reachable Git history for common secrets and private paths
+        run: python scripts/scan_git_history.py
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"

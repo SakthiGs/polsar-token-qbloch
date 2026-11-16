@@ -10,3 +10,7 @@ This assessment covers the GitHub repository `SakthiGs/polsar-token-qbloch` **wh
 **Limitations:** these are metadata/targeted-pattern checks, *not* a complete entropy-based credential scan of every blob, branch, tag, and inaccessible fork, nor a verification of legal rights over textual code. Git history remains a potential source of secrets even when the current tree is clean.
 
 **Release gate:** before public visibility, run an established full-history secrets scanner (e.g. Gitleaks) over all refs; review results manually, rotate any exposed credentials, and rewrite history only with appropriate coordination. Verify dataset/weight rights and author ownership separately. Do not include signed licensing forms or private emails.
+
+## Automated baseline added
+
+The tracked script `scripts/scan_git_history.py` enumerates **all locally reachable Git blob objects** using `git rev-list --objects --all`; checks common GitHub/AWS/Google/OpenAI/Slack token formats, private-key headers and the original Colab Drive path pattern; and exits nonzero on possible findings or skipped oversized blobs. CI uses a full-history checkout (`fetch-depth: 0`) before running it. This is an executable baseline rather than a high-entropy/manual assurance. See GitHub Actions for the execution result.

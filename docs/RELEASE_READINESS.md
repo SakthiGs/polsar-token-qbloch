@@ -1,28 +1,41 @@
-# Release-readiness audit — 15 November 2026
+# Release-readiness audit — 16 November 2026
 
-**Current GitHub visibility: PRIVATE. No automatic public visibility change approved.**
+**Visibility: PRIVATE. User intends to release only after the paper is formally published; no visibility change is authorized now.**
 
-## Verified in this repository
+## Verified in the current repository
 
-- [x] Two portable original EXP37 notebooks, outputs stripped, original scientific code retained.
-- [x] Archived table integrity: eight variants × seeds 42–51.
-- [x] Correct branch counts (18 vs 100) and total parameters (10,547 vs 10,629).
-- [x] Scientific unit tests for unitarity, Pauli-Y Bloch convention, model counts and finite output.
-- [x] Local end-to-end synthetic notebook run.
-- [x] A checkpoint-level CPU replay of 20 archived QBloch/control models on the original held-out cache: quantum AUC ~0.824189, classical AUC ~0.814090, paired p ~0.005859.
-- [x] Candidate-cache provenance now incorporates detector/annotation identity, and cache retains aligned candidate image metadata.
-- [x] Prediction-level paired bootstrap can be recomputed from saved per-candidate NPZs without raw FPSD.
-- [x] Raw imagery and model weight binaries excluded.
+- [x] Main architecture diagram and exact feature dimensions sourced from the implemented notebook.
+- [x] Two output-cleaned, portable original EXP37 notebooks.
+- [x] Archived metrics for eight model variants × seeds 42–51 and statistical integrity checks.
+- [x] QBloch branch 18 parameters; classical branch 100; total models 10,547 and 10,629.
+- [x] Scientific unit tests for unitarity, Bloch Pauli-Y sign, trainable parameters and finite model output.
+- [x] Synthetic notebook Run All and successful GitHub Actions for current head as of the previous check.
+- [x] Checkpoint-level CPU replay of 20 primary-model weights against the archived 1,074-candidate validation cache; main rounded AUCs reproduced.
+- [x] Candidate-cache invalidation includes detector/annotation fingerprints and aligned metadata; bootstrapping from per-candidate predictions is supported when assets are supplied.
+- [x] No raw imagery, feature-cache binary or weights in any of the 11 reachable main-history Git trees inspected.
+- [x] Sources and limits for FPSD and Ultralytics licensing documented.
+- [x] Later \`pip_freeze.txt\` rejected as falsely representing the original June 2026 environment.
 
-## Still outstanding for a *complete public, independently reproducible FPSD paper artifact*
+## Blocking a claim of complete, independently reproduced raw-data research
 
-- [ ] Independently process original FPSD TIF+JPG source files and train/evaluate the historical PauliYOLOv8n detector.
-- [ ] Independently rebuild candidate caches, verify data split/image overlap, train all 80 checkpoints and match published metrics.
-- [ ] Establish exact package versions from the original June 2026 environment and full source-image checksums.
-- [ ] Confirm FPSD data redistribution rights and Ultralytics software/weight licensing compatibility.
-- [ ] Choose an author-approved repository LICENSE.
-- [ ] Inspect entire repository history, not only its latest tree, for secrets/restricted third-party data.
+- [ ] Reconstruct the full original FPSD source-image pipeline (JPG/TIF + annotations) in a fresh controlled environment.
+- [ ] Rebuild/verify PauliYOLOv8n training or recover and hash the original checkpoint under suitable permissions.
+- [ ] Regenerate candidate caches; establish train/val image-level disjointness and verify the full 80-checkpoint experiment from original inputs.
+- [ ] Recover the exact original June 2026 Python/package/CUDA environment and full source-image/weight hashes, if those records exist.
 
-**Allowed description:** research code with verified checkpoint-level replication and executable synthetic testing.
+## Blocking a *legally cleared public software release*
 
-**Not yet supported:** independently reproduced from original raw FPSD; licensed unrestricted public release; quantum hardware advantage; improved end-to-end detector mAP.
+- [ ] Establish author/coauthor permission to release the source and select a license compatible with all third-party components; **no default license is imposed by ChatGPT**.
+- [ ] Verify FPSD rights for every redistributed artifact; keep raw data excluded unless permissions are explicit.
+- [ ] Review Ultralytics AGPL obligations and detector weight distribution before choosing public repository rights.
+- [ ] Run full-history secrets/PII scan across all refs and manually review flagged content.
+- [ ] Await confirmed publisher metadata and DOI, then update \`CITATION.cff\` and create a reviewed release tag.
+- [ ] Obtain explicit authorization before changing GitHub visibility from Private to Public.
+
+## Distinguish two release levels
+
+A **code-only public research artifact** can be suitable if it has a legally compatible source license, clean history, citation and honest limits. It need not reproduce the inaccessible raw FPSD data automatically. A **fully reproducible from raw FPSD** release additionally needs the historical data/weights/split processing and a controlled full rerun.
+
+**Allowed claim today:** archived summary metrics, executable notebooks on synthetic inputs, and independently replayed 20 checkpoint inferences on the original validation cache.
+
+**Not supported today:** exact June training environment, full raw-image reproduction, reproducible detector training, quantum hardware/advantage or demonstrated end-to-end detector mAP improvement.

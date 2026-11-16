@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "audit_date": "2026-11-16",
+  "scope": "Original archived FPSD/EXP31 input identity and provenance; no raw data copied to repository",
+  "pauli_yolo_detector": {
+    "source": "author-held original exp31 stage1 autotrain run",
+    "file": "best.pt",
+    "bytes": 6247978,
+    "sha256": "6ae2427f2df662fac4a4e1a901bfaa84b77d7b79febe36ce62d88afb48d8d34d",
+    "original_model": "yolov8n.pt",
+    "config_file_sha256": "6cac15212fd7ea92815f0e20e8a2ac9e4dd9d9908e6347390c2a0d3b142d08d7",
+    "stage1_data_yaml_sha256": "9f9e7465e826ce59ee4d2e94c2287cd2a7e13c05234e9e69309f7d77a79293fa",
+    "training_results_csv_sha256": "e94e84ec4e92eaf0a269a0e8024a399416ef1bd6452a0e1c895e2168ac7ef0ef",
+    "configured_epochs": 50,
+    "completed_epochs_in_csv": 37,
+    "patience": 10,
+    "batch": 16,
+    "imgsz": 640,
+    "training_seed": 0,
+    "device_reported": "cpu",
+    "note": "Checkpoint SHA256 is independently computed from the archived bytes; published performance is NOT a fresh detector re-training."
+  },
+  "original_coco_tif_annotations": {
+    "train": {
+      "file": "instances_train2017_tif.json",
+      "sha256": "c04f01f520e912fdb4a33973ff4686cc2b053e2c2f7b8c3c22e918d3a78ae01d",
+      "images": 768,
+      "annotations": 1532
+    },
+    "validation": {
+      "file": "instances_val2017_tif.json",
+      "sha256": "965cfae5dd52b5e8187775dfb9ed9aaf8c3a77ea34dfd806bb3d13f482db6b83",
+      "images": 85,
+      "annotations": 182
+    },
+    "overlapping_casefolded_filenames": 0,
+    "overlapping_local_image_ids": 85,
+    "note": "COCO image IDs are assigned per split; numeric overlaps are expected and are NOT evidence of leakage. Filenames were disjoint; raw image content-hash overlap was not checked."
+  },
+  "checkpoint_replay_cache": {
+    "sha256": "08f7f2b9e2136ede49e711b114d0757d126370f421299b553fd69c749d63e8d0",
+    "validation_candidates": 1074
+  },
+  "rights_note": "Hash inventory only. Original FPSD data and detector weights are NOT redistributed here."
+}

@@ -9,3 +9,9 @@ The intended nine real channels in the dataset TIF are C11, Re(C12), Im(C12), Re
 A **public download is not automatically a license to redistribute** original TIF files, JPEGs, labels, resized chips, feature caches or derived model weights. Obtain the source files from the original provider and verify reuse permissions before publishing any of them here.
 
 The original validation candidate cache has 1,074 candidates, including 355 positive and 719 negative; multiple candidates can originate from one image. A candidate-level bootstrap does not establish an image-level independent-sample CI.
+
+## Archived experiment provenance — 16 November 2026
+
+An integrity-only check of the original COCO TIFF annotation JSONs found **768 training images / 1,532 annotated objects** and **85 validation images / 182 annotated objects**. Normalized filenames have **zero train/validation overlap**, while local numeric COCO image IDs overlap for **85** values. This is expected from split-local numbering and must not be interpreted as leakage. Image-content duplicates across distinct filenames have **not** been excluded. See `configs/input_provenance.json` and `scripts/verify_fpsd_splits.py`.
+
+The original stage-one PauliYOLOv8n `best.pt` was found in the author’s experiment archive; its **SHA-256** and relevant training settings were recorded without copying weights, annotations or images into the repository. See `configs/input_provenance.json`.

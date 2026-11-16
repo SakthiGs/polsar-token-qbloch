@@ -64,3 +64,18 @@ python scripts/reproduce_from_predictions.py --predictions /path/exp37-run/predi
 ```
 
 Candidate- and image-cluster bootstrap are distinct, and image-cluster bootstrap requires aligned candidate-image IDs; the historical paper only established candidate-level bootstrap. See [readiness](RELEASE_READINESS.md).
+
+## Audit original COCO split metadata
+
+For original TIFF COCO annotation files:
+
+```bash
+python scripts/verify_fpsd_splits.py \
+  --train-ann /path/FPSD/coco/annotations/instances_train2017_tif.json \
+  --val-ann /path/FPSD/coco/annotations/instances_val2017_tif.json \
+  --train-dir /path/FPSD/coco/train2017_tif \
+  --val-dir /path/FPSD/coco/val2017_tif \
+  --output outputs/fpsd_split_check.json
+```
+
+This checks annotation referential integrity, within-split uniqueness, **cross-split filenames** and whether listed TIFF files exist. Add `--hash-images` to compute deterministic image-set digests (may take substantial I/O); verify content-hash duplicates separately if different filenames could contain the same imagery. The original annotation SHA-256 hashes and stage-one detector weight hash are stored in `configs/input_provenance.json`. COCO numeric image IDs may overlap across train/val because they are split-local.

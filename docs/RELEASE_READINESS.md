@@ -15,6 +15,8 @@
 - [x] No raw imagery, feature-cache binary or weights in any of the 11 reachable main-history Git trees inspected.
 - [x] Sources and limits for FPSD and Ultralytics licensing documented.
 - [x] Later `pip_freeze.txt` rejected as falsely representing the original June 2026 environment.
+- [x] Original archived PauliYOLOv8n `best.pt` located and hashed; original stage-one training settings inventoried without uploading weights.
+- [x] Original train/val COCO TIFF annotations hashed and validated for disjoint filenames (768 vs 85 images); split-local COCO numeric IDs overlap and are not globally unique.
 
 ## Blocking a claim of complete, independently reproduced raw-data research
 

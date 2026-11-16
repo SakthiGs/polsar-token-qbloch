@@ -73,7 +73,7 @@ python -m unittest discover -s tests -v
 python scripts/run_exp37.py --mode synthetic --timeout 300
 ```
 
-The last command runs on **generated synthetic test inputs** only. It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using `.venv\Scripts\activate`.
+The last command runs on **generated synthetic test inputs** only. The archived detector and COCO annotation SHA-256 values are recorded in [input provenance](configs/input_provenance.json). A [filename-based COCO train/validation split validator](scripts/verify_fpsd_splits.py) is provided (numeric COCO image IDs are local to each split and must not be used as a cross-split identity check). It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using `.venv\Scripts\activate`.
 
 For lawful access to FPSD, original PauliYOLO weights and the full experiment path, see [reproducing the experiment](docs/REPRODUCING_EXPERIMENT.md) and [data access](docs/DATA_ACCESS.md). No dataset, cached features, or model weights are distributed here.
 

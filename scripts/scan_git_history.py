@@ -18,7 +18,7 @@ PATTERNS = {
     "OpenAI-style token": rb"sk-[A-Za-z0-9_-]{20,}",
     "Slack token": rb"xox[baprs]-[A-Za-z0-9-]{20,}",
     "Private key header": rb"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----",
-    "Private Colab Drive path": rb"/content/drive/MyDrive/",
+    "Private Colab Drive path": rb"/content/drive/MyDrive/[A-Za-z0-9_.-]",
 }
 REGEX = {name: re.compile(expression) for name, expression in PATTERNS.items()}
 

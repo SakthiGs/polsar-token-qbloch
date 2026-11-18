@@ -22,6 +22,37 @@ PATTERNS = {
 }
 REGEX = {name: re.compile(expression) for name, expression in PATTERNS.items()}
 
+# Release gate: reject historically tracked raw data, trained weights, credential
+# files, and binary/paper artifacts, even if later removed from the current tree.
+# Check all reachable *commits*, not only HEAD.
+SENSITIVE_SUFFIXES = (
+    ".pt", ".pth", ".ckpt", ".npz", ".npy", ".tif", ".tiff",
+    ".jpg", ".jpeg", ".png", ".pdf", ".zip", ".7z", ".h5",
+    ".hdf5", ".onnx", ".pkl", ".pickle", ".parquet",
+    ".pem", ".key", ".p12", ".pfx",
+)
+SENSITIVE_BASENAMES = (
+    "credentials.json", "kaggle.json", "id_rsa", "id_ed25519",
+)
+
+def classify_sensitive_path(path: str) -> str | None:
+    """Return a generic risk label; avoid printing personal/sensitive filenames."""
+    norm = path.replace("\\", "/").lower()
+    parts = norm.split("/")
+    basename = parts[-1]
+    if basename == ".env.example":
+        return None
+    if basename == ".env" or basename.startswith(".env."):
+        return "environment/credential file"
+    if basename in SENSITIVE_BASENAMES or basename.startswith("service_account"):
+        return "credential/identity file"
+    if any(p in {"secrets", "private", "raw_data", "datasets", "checkpoints", "weights"} for p in parts[:-1]):
+        return "sensitive directory"
+    if basename.endswith(SENSITIVE_SUFFIXES):
+        return "binary/data/model/paper artifact"
+    return None
+
+
 def run_git(*args: str) -> bytes:
     proc = subprocess.run(
         ["git", *args], capture_output=True, check=False,
@@ -35,6 +66,19 @@ def scan(max_blob_bytes: int = 10_000_000) -> int:
     hits = []
     oversized = []
     blobs_checked = 0
+    # Inspect filenames in every reachable commit, including deleted/renamed files.
+    sensitive_paths = set()
+    commit_shas = run_git("rev-list", "--all").splitlines()
+    for sha_bytes in commit_shas:
+        sha = sha_bytes.decode("ascii")
+        for path_bytes in run_git("ls-tree", "-r", "-z", "--name-only", sha).split(b"\x00"):
+            if not path_bytes:
+                continue
+            path = path_bytes.decode("utf-8", errors="replace")
+            label = classify_sensitive_path(path)
+            if label:
+                sensitive_paths.add((label, path))
+
     for line in run_git("rev-list", "--objects", "--all").splitlines():
         oid = line.split(b" ", 1)[0].decode("ascii")
         if oid in seen:
@@ -56,9 +100,13 @@ def scan(max_blob_bytes: int = 10_000_000) -> int:
         print(f"FAIL: {oid}: possible {kind} (value suppressed)")
     for oid, size in oversized:
         print(f"REVIEW: {oid}: oversized blob ({size} bytes), skipped")
-    if hits or oversized:
+    print(f"Checked filenames across {len(commit_shas)} reachable commits.")
+    for label in sorted({label for label, _ in sensitive_paths}):
+        print(f"FAIL: historically tracked {label} (filenames suppressed)")
+
+    if hits or oversized or sensitive_paths:
         return 1
-    print("PASS: no configured token/key patterns or hard-coded private Colab Drive paths.")
+    print("PASS: no configured token/key patterns, private Colab Drive paths, or historically tracked sensitive artifact filenames.")
     print("Caveat: pattern matching does not establish full secrets/PII clearance.")
     return 0
 

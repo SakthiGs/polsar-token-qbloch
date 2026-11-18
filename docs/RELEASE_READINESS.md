@@ -12,7 +12,7 @@
 - [x] Both notebooks' synthetic Run All checks previously passed (15 November 2026); the repository workflow executes the canonical M1/M2 synthetic notebook. No new Actions status or fresh FPSD rerun is asserted for the 18 November documentation commits.
 - [x] Checkpoint-level CPU replay of 20 primary-model weights against the archived 1,074-candidate validation cache; main rounded AUCs reproduced.
 - [x] Candidate-cache invalidation includes detector/annotation fingerprints and aligned metadata; bootstrapping from per-candidate predictions is supported when assets are supplied.
-- [x] No raw imagery, feature-cache binary or weights in any of the 11 reachable main-history Git trees inspected.
+- [x] No raw imagery, feature-cache binary, weights or publisher PDFs found in **26 reachable main-history commit trees** inspected on 18 November 2026; see [security and history audit](SECURITY_AND_HISTORY_AUDIT.md).
 - [x] Sources and limits for FPSD and Ultralytics licensing documented.
 - [x] Later `pip_freeze.txt` rejected as falsely representing the original June 2026 environment.
 - [x] Original archived PauliYOLOv8n `best.pt` located and hashed; original stage-one training settings inventoried without uploading weights.
@@ -27,10 +27,11 @@
 
 ## Blocking a *legally cleared public software release*
 
-- [ ] Establish author/coauthor permission to release the source and select a license compatible with all third-party components; **no default license is imposed by ChatGPT**.
+- [ ] Establish author/coauthor/institutional IP-owner permission to release the source and select a license compatible with all third-party components; **no default license is imposed by ChatGPT**. See [public-release audit](PUBLIC_RELEASE_AUDIT_2026-11-18.md).
 - [ ] Verify FPSD rights for every redistributed artifact; keep raw data excluded unless permissions are explicit.
 - [ ] Review Ultralytics AGPL obligations and detector weight distribution before choosing public repository rights.
-- [ ] Run full-history secrets/PII scan across all refs and manually review flagged content.
+- [x] Custom full-history regex scanner checked 82 reachable Git blobs and filename checker checked 26 commit snapshots; automated CI and regression tests passed.
+- [ ] Run specialist/high-entropy secrets and manual PII/source-rights review across all refs; the custom scanner alone does not provide complete clearance.
 - [ ] Await confirmed publisher metadata and DOI, then update `CITATION.cff` and create a reviewed release tag.
 - [ ] Obtain explicit authorization before changing GitHub visibility from Private to Public.
 - [ ] Reconcile the camera-ready *Data and Code Availability* wording (which links to this GitHub repository) with actual public access at the time of formal proceedings publication; see [camera-ready alignment](CAMERA_READY_ALIGNMENT_2026-11-18.md).

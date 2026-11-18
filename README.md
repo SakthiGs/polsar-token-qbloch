@@ -4,6 +4,10 @@
 
 **Authors:** Sakthi Prabhu Gunasekar; Prasanna Kumar Rangarajan
 
+**Accepted paper title:** *Quantum-Inspired Bloch Feature Fusion for Full-Polarimetric SAR Ship Candidate Verification* (SEQUENCE 2026, Paper #67).
+
+**18 November camera-ready alignment:** [targeted manuscript-to-repository audit](docs/CAMERA_READY_ALIGNMENT_2026-11-18.md). This private research artifact is not yet a public release, and no proceedings DOI is asserted.
+
 This repository contains the experiment implementation, archived statistical results, tests, and checkpoint-replay tools for a **second-stage PolSAR ship-candidate verifier**. It is **not** a claim of quantum hardware execution, quantum computational advantage, or improved end-to-end ship detector mAP.
 
 ## Main architecture

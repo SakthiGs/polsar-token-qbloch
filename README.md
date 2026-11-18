@@ -95,7 +95,7 @@ For lawful access to FPSD, original PauliYOLO weights and the full experiment pa
 
 ## Public release after publication
 
-**Current status: private pre-publication research archive.** Passing GitHub Actions does not remove external-data, historical environment, rights or coauthor-licensing requirements. The [release-readiness checklist](docs/RELEASE_READINESS.md) explicitly separates verified activities from remaining blockers.
+**Current status: private pre-publication research archive.** Passing GitHub Actions does not remove external-data, historical environment, rights or coauthor-licensing requirements. The [release-readiness checklist](docs/RELEASE_READINESS.md) and [18 November security/licensing audit](docs/PUBLIC_RELEASE_AUDIT_2026-11-18.md) explicitly separate verified activities from remaining blockers.
 
 - Do not upload third-party FPSD imagery, labels, raw feature caches or pretrained YOLO weights without explicit permission and compatible licenses.
 - Ultralytics software and default models use **AGPL-3.0** unless separately licensed; derivative-work compliance needs author review. See [licensing assessment](docs/LICENSE_AND_RIGHTS.md).

@@ -1,4 +1,4 @@
-# Release-readiness audit — 16 November 2026
+# Release-readiness audit — updated 18 November 2026
 
 **Visibility: PRIVATE. User intends to release only after the paper is formally published; no visibility change is authorized now.**
 
@@ -21,7 +21,7 @@
 ## Blocking a claim of complete, independently reproduced raw-data research
 
 - [ ] Reconstruct the full original FPSD source-image pipeline (JPG/TIF + annotations) in a fresh controlled environment.
-- [ ] Rebuild/verify PauliYOLOv8n training or recover and hash the original checkpoint under suitable permissions.
+- [ ] Independently reproduce PauliYOLOv8n training/proposals from the original image inputs. The archived `best.pt` checkpoint has already been located and SHA-256 hashed, but fresh detector training has **not** been reproduced.
 - [ ] Regenerate candidate caches; establish train/val image-level disjointness and verify the full 80-checkpoint experiment from original inputs.
 - [ ] Recover the exact original June 2026 Python/package/CUDA environment and full source-image/weight hashes, if those records exist.
 
@@ -33,6 +33,7 @@
 - [ ] Run full-history secrets/PII scan across all refs and manually review flagged content.
 - [ ] Await confirmed publisher metadata and DOI, then update `CITATION.cff` and create a reviewed release tag.
 - [ ] Obtain explicit authorization before changing GitHub visibility from Private to Public.
+- [ ] Reconcile the camera-ready *Data and Code Availability* wording (which links to this GitHub repository) with actual public access at the time of formal proceedings publication; see [camera-ready alignment](CAMERA_READY_ALIGNMENT_2026-11-18.md).
 
 ## Distinguish two release levels
 

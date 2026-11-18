@@ -1,16 +1,20 @@
-# Repository security and history inspection — 16 November 2026
+# Repository security and history inspection — updated 18 November 2026
 
-This assessment covers the GitHub repository `SakthiGs/polsar-token-qbloch` **while private**.
+**Repo:** `SakthiGs/polsar-token-qbloch`. **Status: PRIVATE**. See [complete publication licensing and security checklist](PUBLIC_RELEASE_AUDIT_2026-11-18.md).
 
-- Enumerated **11 reachable commit snapshots** on the current main-branch history.
-- Inspected the file lists for those snapshots (2 to 34 tracked blobs per snapshot).
-- No files with dataset or checkpoint binary extensions (`.pt`, `.pth`, `.npz`, `.npy`, `.tif`, `.tiff`, `.jpg`, `.png`, `.pdf`, `.zip`) occurred in these trees.
-- Four reachable historical notebook blob versions were checked for saved outputs (none) and common absolute Drive/container paths (none) and obvious token prefixes (`ghp_`, `AIza`, `AKIA`, private key header); none of those literal prefixes appeared. An ordinary variable named `token` is not a secret by itself.
+## Completed inspections
 
-**Limitations:** these are metadata/targeted-pattern checks, *not* a complete entropy-based credential scan of every blob, branch, tag, and inaccessible fork, nor a verification of legal rights over textual code. Git history remains a potential source of secrets even when the current tree is clean.
+- Enumerated all **26 commits** reachable from the main branch in the GitHub commit listing, and independently fetched all **26 recursive commit trees**. No tree was truncated.
+- The current head tree has **43 tracked blobs**; no historical tree contained a file with the reviewed imagery/weights/cache/archive/PDF/credential-key extensions, including `.jpg`, `.png`, `.tif`, `.npz`, `.pt`, `.pdf`, `.zip`, `.pem`.
+- GitHub's refs listing contained only `refs/heads/main` and no tag refs on 18 November.
+- A complete checkout in GitHub Actions run [44365128038](https://github.com/SakthiGs/polsar-token-qbloch/actions/runs/44365128038) scanned **82 reachable blob objects** for the configured token/key/private-path regex patterns; no matches or oversized skipped blobs. That run also passed **13 scientific/portability unit tests** and the canonical notebook's synthetic smoke test.
+- The historical filename scan was strengthened on 18 November 2026 in `scripts/scan_git_history.py`. [CI run 44366594829](https://github.com/SakthiGs/polsar-token-qbloch/actions/runs/44366594829) passed after adding the new sensitive-path regression tests.
+- The publicly disclosed content is research architecture, aggregate summary metrics and anonymized hash/provenance records, **not** original FPSD imagery or trained detector weights.
 
-**Release gate:** before public visibility, run an established full-history secrets scanner (e.g. Gitleaks) over all refs; review results manually, rotate any exposed credentials, and rewrite history only with appropriate coordination. Verify dataset/weight rights and author ownership separately. Do not include signed licensing forms or private emails.
+## Remaining security work
 
-## Automated baseline added
+The baseline is a custom signature/filename scanner, **not** an independent high-entropy scanner such as Gitleaks. Conduct a specialist scan and human review for secrets, private paths, personal information and copied/proprietary source before going public. Repository GitHub Advanced Security, Dependabot and code-scanning alert settings have not been verified by a suitable connected endpoint.
 
-The tracked script `scripts/scan_git_history.py` enumerates **all locally reachable Git blob objects** using `git rev-list --objects --all`; checks common GitHub/AWS/Google/OpenAI/Slack token formats, private-key headers and the original Colab Drive path pattern; and exits nonzero on possible findings or skipped oversized blobs. CI uses a full-history checkout (`fetch-depth: 0`) before running it. This is an executable baseline rather than a high-entropy/manual assurance. See GitHub Actions for the execution result.
+If real credentials are discovered, **rotate/revoke immediately** before any history rewrite. See https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository.
+
+**Conclusion:** Basic historical artifact/credential screening PASSED. Complete public-release clearance is **not** granted; code ownership, third-party licenses and broader security review remain open.

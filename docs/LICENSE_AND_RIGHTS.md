@@ -1,6 +1,6 @@
-# Data, software, and model licensing review (16 November 2026)
+# Data, software, and model licensing review (updated 18 November 2026)
 
-**Status: unresolved author/legal decision. Do not publish as open-source licensed until resolved.**
+**Status: unresolved author/legal decision. Do not publish as open-source licensed until resolved.** See the [18 November release audit](PUBLIC_RELEASE_AUDIT_2026-11-18.md) for the separate evidence-backed historical security check and open ownership/licensing gates.
 
 ### FPSD dataset
 
@@ -22,4 +22,4 @@ Authorship of the paper is not automatically proof that one researcher alone hol
 
 A code-only public repository can document what is and is not reproducible without embedding raw data/weights. It must not promise an out-of-box raw-FPSD reproduction when original dataset and stage-one detector assets are external.
 
-No specific code license has been approved. **The repository intentionally has no `LICENSE` file at present.** Making a repo public without one is not an open-source license.
+Neither the owner/coauthor's permission nor the code's institutional/employment IP status has been independently established. The scientific training workflow optionally installs `ultralytics`; an MIT/Apache license should **not** be applied to the integrated workflow without assessing upstream AGPL obligations. No specific code license has been approved. **The repository intentionally has no `LICENSE` file at present.** Making a repo public without one is not an open-source license.

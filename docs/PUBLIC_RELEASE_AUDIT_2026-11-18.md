@@ -9,7 +9,7 @@
 - Enumerated all **26 reachable commit snapshots** through the GitHub Git tree API on 18 November 2026. No tracked files in those trees had the reviewed dataset/image/checkpoint/archive/key extensions, including `.pt`, `.pth`, `.npz`, `.npy`, `.tif`, `.tiff`, `.jpg`, `.png`, `.pdf`, `.zip`, `.h5`, `.parquet`, `.pem`, `.key`, `.p12`, `.pfx`.
 - The Git refs returned by GitHub consist of **`refs/heads/main` only**, with no tag refs at audit time.
 - Full-checkout GitHub Actions run [44365128038](https://github.com/SakthiGs/polsar-token-qbloch/actions/runs/44365128038) on head `609a39d` completed successfully: scanner processed **82 reachable Git blob objects** and found no configured GitHub/Google/AWS/OpenAI/Slack key patterns, private-key header or private Colab Drive path; **13 unit tests** and a **synthetic canonical-notebook run** passed.
-- The scanner has now been extended to fail on sensitive **historical filenames** across all reachable commits, even when the files were subsequently deleted. See `scripts/scan_git_history.py` and `tests/test_release_history_path.py`. Confirm the latest post-change GitHub Actions result before treating that enhancement as verified.
+- The scanner was extended to fail on sensitive **historical filenames** across reachable commits, including filenames subsequently deleted. GitHub Actions [44366594829](https://github.com/SakthiGs/polsar-token-qbloch/actions/runs/44366594829) on `c0d2c65` **passed**, including the new scanner and its regression tests. See `scripts/scan_git_history.py` and `tests/test_release_history_path.py`.
 - `.gitignore` excludes common secrets, local environments, original raw imagery, model weights and caches. `results/summary/grid_per_seed_metrics.csv` contains model/seed aggregate metrics, not the original full-pol image arrays or individual candidate predictions.
 
 ### Security gaps remaining
@@ -47,7 +47,7 @@ A code-only artifact can be released separately from FPSD, but code-only visibil
 - [x] Confirm prior CI pattern scan of 82 reachable blob objects passed.
 - [x] Confirm no `LICENSE` has been invented or added without owner authorization.
 - [x] Keep repository PRIVATE and avoid uploading original dataset, model weights or submitted manuscript PDF.
-- [ ] Confirm latest CI after filename-scanner enhancement.
+- [x] Confirm post-enhancement CI passed on commit `c0d2c65` (run 44366594829).
 - [ ] Independently run a specialist secrets/entropy scanner and review all alerts.
 - [ ] Inspect GitHub advanced security/dependency alert settings and perform version-resolved dependency/SBOM review.
 - [ ] Author/coauthor/institutional IP approvals for distributing the source.

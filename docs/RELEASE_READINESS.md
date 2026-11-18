@@ -9,7 +9,7 @@
 - [x] Archived metrics for eight model variants × seeds 42–51 and statistical integrity checks.
 - [x] QBloch branch 18 parameters; classical branch 100; total models 10,547 and 10,629.
 - [x] Scientific unit tests for unitarity, Bloch Pauli-Y sign, trainable parameters and finite model output.
-- [x] Synthetic notebook Run All and successful GitHub Actions for current head as of the previous check.
+- [x] Both notebooks' synthetic Run All checks previously passed (15 November 2026); the repository workflow executes the canonical M1/M2 synthetic notebook. No new Actions status or fresh FPSD rerun is asserted for the 18 November documentation commits.
 - [x] Checkpoint-level CPU replay of 20 primary-model weights against the archived 1,074-candidate validation cache; main rounded AUCs reproduced.
 - [x] Candidate-cache invalidation includes detector/annotation fingerprints and aligned metadata; bootstrapping from per-candidate predictions is supported when assets are supplied.
 - [x] No raw imagery, feature-cache binary or weights in any of the 11 reachable main-history Git trees inspected.

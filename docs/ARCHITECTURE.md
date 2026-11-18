@@ -1,10 +1,47 @@
 # Implemented EXP37 architecture — source-aligned technical note
 
+
+## Manuscript Figures 1–3 — implementation-aligned architecture
+
+The author-supplied updated manuscript \`Token-QBlochFusion.pdf\` (18 November 2026) describes three views of the same study. The diagrams below are **editable Mermaid equivalents** of their computational structure, not copies of the manuscript's graphical figure assets.
+
+**Figure 3: entire two-stage pipeline, with experimentally evaluated boundary**
+
+\`\`\`mermaid
+flowchart TD
+    A["FPSD PauliRGB image"] --> B["Stage 1: PauliYOLOv8n<br/>proposal boxes + detector confidence"]
+    B --> C["Candidate boxes"]
+    X["Co-registered full-polarimetric SAR<br/>nine real-valued C9 channels"] --> D
+    C --> D["Extract 64 × 64 candidate-centered C9 chip"]
+    D --> E["6 × 6 local regions = 36 tokens"]
+    E --> F["Handcrafted PolSAR<br/>8D per token:<br/>log span, coherence, phase, entropy"]
+    E --> G["Local normalized 3 × 3<br/>complex coherency matrix"]
+    G --> H["Pairs (1,2), (1,3), (2,3)<br/>three Bloch-encoded 2 × 2 density matrices"]
+    H --> I["Classically simulated<br/>three-qubit product state 8 × 8"]
+    I --> J["2 × (Rz–Ry–Rz on 3 qubits + CNOT ring)<br/>18 trainable angles, shared over tokens"]
+    J --> K["9 single-qubit X/Y/Z + 3 pair ZZ<br/>12D Pauli readout per token"]
+    F --> L["20D per-token concatenation"]
+    K --> L
+    L --> M["Linear 20 → 32 + CLS/position embeddings<br/>one 4-head transformer encoder"]
+    M --> N["Stage 2 verifier:<br/>ship / false-alarm score"]
+    N -. "optional, not experimentally validated" .-> P["Possible future score re-ranking"]
+    B -. "detector confidence" .-> P
+\`\`\`
+
+Only **candidate-level verifier performance** is evaluated in this research. The optional detector-score combination shown by a dashed path is an integration proposal; final detection AP50/mAP50–95 superiority was **not measured**.
+
+**Figure 1: simulated QBloch transformation.** Three polarization-pair states are tensored into an 8×8 density matrix. Both trainable layers use three qubits × (Rz, Ry, Rz) and each is followed by the directed CNOT ring 0→1→2→0. The 18 shared trainable angles and 12 Pauli readouts are confirmed in the architecture/model test. These are classical matrix operations, not QPU operations.
+
+**Figure 2: local feature fusion.** Each of 36 patches supplies an 8D handcrafted PolSAR descriptor and a 12D QBloch readout. Their 20D concatenation is projected to 32D, aggregated with a CLS token and positional embeddings by a one-layer, four-head transformer, and classified as a candidate-level ship/false-alarm decision.
+
+**Input clarification:** PauliYOLOv8n operates on **PauliRGB pseudo-colour imagery**; the proposed verifier extracts **co-registered full-pol C9 channels** at detector candidate boxes. A diagram that sends the nine C9 real channels directly into stage-one PauliYOLO misstates the manuscript's input relationship.
+
+
 **Primary source:** `notebooks/EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb`, specifically the candidate-token routines and `ThreeQubitUnitary`, `Arch2QuantumFeature`, `Arch2ControlFeature`, `TokenArch2Fusion`, and `SharedPoolHead`.
 
 ## Data path
 
-1. **Candidate proposals**: PauliYOLOv8n; inference conf=0.001, NMS IoU=0.65, max detections=300.
+1. **Candidate proposals**: PauliYOLOv8n on PauliRGB pseudo-colour imagery; inference conf=0.001, NMS IoU=0.65, max detections=300. Proposal boxes then locate co-registered full-pol C9 candidate chips.
 2. **ROI chip**: 64×64 pixels of nine real-valued channels:
    `C11, Re(C12), Im(C12), Re(C13), Im(C13), C22, Re(C23), Im(C23), C33`. These reconstruct a Hermitian 3×3 complex matrix C for each pixel.
 3. **Spatial tokens**: 6×6 grid, so 36 patches. Patch-aggregated C is normalized by span to form a complex 3×3 rho; each patch produces an 8-vector:
@@ -26,7 +63,7 @@
 
 **Correct shared remainder:** 10,547 − 18 = **10,529** and 10,629 − 100 = **10,529**.
 
-The paper's older **12-parameter** description is incorrect. Correct the paper text and Figure 1 to 18 angles and **CNOT rings after both layers**, without changing the experimentally verified reported totals.
+The earlier draft's **12-parameter** statement was incorrect; the updated 18 November 2026 manuscript now correctly uses **18** angles and **CNOT rings after both trainable layers**. The reported whole-model counts remain unchanged.
 
 ## Boundaries
 

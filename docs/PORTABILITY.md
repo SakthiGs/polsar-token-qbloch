@@ -6,7 +6,7 @@ The two EXP37 source notebooks were taken from the author's Drive, cleaned of ce
 
 Install `requirements.txt`. Start Jupyter in repository root (`jupyter lab`) and open either file under `notebooks/`. With no environment variables set, `POLSAR_DRY_RUN=true` and `POLSAR_RUN_EXPERIMENT=true`, running all cells generates synthetic data and tests model forward passes, metrics and logging without real FPSD data.
 
-Both notebooks passed that synthetic "Run All" test in a CPU environment on 2026-11-15. This is **not** a reproduction of the published FPSD numbers.
+Both notebooks passed that synthetic "Run All" test in a CPU environment on 2026-11-15 according to the previous verification record. The two notebook files were inspected again on 2026-11-18: both remain JSON-valid, Python-3 notebooks without stored execution outputs. **No fresh Run All was performed in this documentation update.** The GitHub Actions job currently runs the canonical `EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipynb` using `scripts/run_exp37.py`; it does not independently run both notebooks on every push. These tests are **not** a reproduction of the published FPSD numbers.
 
 ## Full FPSD execution
 
@@ -23,6 +23,6 @@ The notebooks no longer automatically mount Google Drive or pip-install packages
 
 ## Known remaining risks
 
-The historical cache key does not encode all input/weight provenance. Clear caches if dataset splits or detector checkpoints change, then record the exact hashes. The candidate-level bootstrap does not support an image-level claim. The full raw-data workflow and environment lockfile need external validation with the authorized data and weight files.
+The current candidate-cache key includes the detector SHA-256, annotation SHA-256, split parameters and directory-inventory identity, as documented in `docs/REPRODUCING_EXPERIMENT.md`. Directory inventories are **not** substitutes for complete image-file content hashes, and the original source-image pipeline has not been freshly rerun. Clear/rebuild caches when inputs change and record complete hashes. Candidate-level bootstrap does not establish image-level uncertainty. The full raw-data workflow and historical environment lockfile still need independent validation with authorized data and weights.
 
 No raw FPSD data or pretrained detector is distributed here.

@@ -6,7 +6,7 @@
 
 - **Accepted paper:** *Quantum-Inspired Bloch Feature Fusion for Full-Polarimetric SAR Ship Candidate Verification* (SEQUENCE 2026, Paper #67).
 - **Authors:** Sakthi Prabhu Gunasekar and Prasanna Kumar Rangarajan.
-- **Compared artifact:** user-provided `Token_QBloch_Fusion_Full_Pol_SAR_CameraReady(8).pdf` (19 pages, 18 November 2026). The submitted PDF is **not** redistributed from this repository.
+- **Compared artifacts:** user-provided `Token_QBloch_Fusion_Full_Pol_SAR_CameraReady(8).pdf` (19 pages) and the later author-shared Drive manuscript `Token-QBlochFusion.pdf` (updated 18 November 2026). The latter confirms the same headline model architecture, 18-parameter/two-ring branch, benchmark metrics and Data and Code Availability reference. Neither PDF is redistributed from this repository.
 - **Bibliography:** publisher DOI/proceedings URL not yet confirmed. Do not invent or preemptively add an identifier to `CITATION.cff`.
 
 ## Cross-checked claims
@@ -30,7 +30,7 @@
 
 ## What was, and was not, verified here
 
-- Verified the *reported text and tabulated values* above against the supplied camera-ready PDF and the checked-in README/architecture/provenance/replay records.
+- Verified the *reported text and tabulated values* above against the two supplied 18 November manuscripts and the checked-in README/architecture/provenance/replay records. The full schematic of manuscript Figures 1–3 is transcribed as an editable, implementation-aligned Mermaid representation in `docs/ARCHITECTURE.md` (not an embedded manuscript figure PDF).
 - Existing checkpoint replay validates inference from **20 saved primary checkpoints** on the archived validation cache, **not** regeneration from raw FPSD images.
 - This documentary check did **not** re-run full detector training, regenerate candidate proposals, repeat all model trainings, perform a complete history-wide secret scan, or adjudicate third-party redistribution rights.
 - The original FPSD dataset, PauliYOLOv8n weights, validation-cache binaries and other restricted assets must remain excluded unless lawful redistribution rights are established.

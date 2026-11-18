@@ -3,11 +3,11 @@
 
 ## Manuscript Figures 1–3 — implementation-aligned architecture
 
-The author-supplied updated manuscript \`Token-QBlochFusion.pdf\` (18 November 2026) describes three views of the same study. The diagrams below are **editable Mermaid equivalents** of their computational structure, not copies of the manuscript's graphical figure assets.
+The author-supplied updated manuscript `Token-QBlochFusion.pdf` (18 November 2026) describes three views of the same study. The diagrams below are **editable Mermaid equivalents** of their computational structure, not copies of the manuscript's graphical figure assets.
 
 **Figure 3: entire two-stage pipeline, with experimentally evaluated boundary**
 
-\`\`\`mermaid
+```mermaid
 flowchart TD
     A["FPSD PauliRGB image"] --> B["Stage 1: PauliYOLOv8n<br/>proposal boxes + detector confidence"]
     B --> C["Candidate boxes"]
@@ -26,7 +26,7 @@ flowchart TD
     M --> N["Stage 2 verifier:<br/>ship / false-alarm score"]
     N -. "optional, not experimentally validated" .-> P["Possible future score re-ranking"]
     B -. "detector confidence" .-> P
-\`\`\`
+```
 
 Only **candidate-level verifier performance** is evaluated in this research. The optional detector-score combination shown by a dashed path is an integration proposal; final detection AP50/mAP50–95 superiority was **not measured**.
 

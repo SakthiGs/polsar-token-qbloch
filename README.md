@@ -16,8 +16,8 @@ The following diagram follows the actual `EXP37_M1_M2_ENTANGLEMENT_BOOTSTRAP.ipy
 
 ```mermaid
 flowchart TD
-    A["FPSD PolSAR image<br/>nine real-valued C9 channels"] --> B["Stage 1: PauliYOLOv8n<br/>ship candidate proposals"]
-    B --> C["Candidate-centered chip<br/>64 × 64 pixels"]
+    A["FPSD PauliRGB image"] --> B["Stage 1: PauliYOLOv8n<br/>ship candidate bounding boxes"]
+    B --> C["Co-registered full-pol candidate chip<br/>64 × 64 pixels; nine real-valued C9 channels"]
     C --> D["6 × 6 local grid<br/>36 patches per candidate"]
 
     D --> E["Classical stream<br/>8 features per patch:<br/>log span, 3 coherence magnitudes,<br/>3 relative phases, entropy"]
@@ -40,7 +40,7 @@ flowchart TD
 
 **What is novel in the experiment:** the specifically constructed polarization-pair Bloch feature branch, its fusion with local PolSAR tokens, and the matched classical-control comparison—not the invention of a new quantum gate. The entanglement ablation did not establish a statistically reliable **AUC** benefit for the CNOT ring.
 
-See [architecture and parameter-accounting notes](docs/ARCHITECTURE.md).
+See [manuscript-aligned Figures 1–3 architecture walkthrough](docs/ARCHITECTURE.md), including the separate PauliRGB detector input, full-pol C9 candidate extraction, and the distinction between a measured verifier score and untested final detector re-ranking.
 
 ## Circuit details and verified parameter accounting
 
@@ -49,7 +49,7 @@ See [architecture and parameter-accounting notes](docs/ARCHITECTURE.md).
 - **18 trainable QBloch parameters = 2 layers × 3 qubits × 3 angles.**
 - The classical control is a **9 → 4 → 12** MLP, with **100** trainable parameters.
 - Full verifier: **10,547** (Token–QBloch) versus **10,629** (Token–Control): the difference **82** matches **100 − 18**.
-- A previous manuscript draft incorrectly stated **12** QBloch branch parameters; the camera-ready text and figure should use **18**.
+- The updated 18 November camera-ready manuscript correctly reports **18** QBloch rotation parameters and **two** CNOT rings. This supersedes the earlier draft's erroneous 12-parameter statement.
 
 ## Results and evidence level
 
@@ -77,7 +77,7 @@ python -m unittest discover -s tests -v
 python scripts/run_exp37.py --mode synthetic --timeout 300
 ```
 
-The last command runs on **generated synthetic test inputs** only. The archived detector and COCO annotation SHA-256 values are recorded in [input provenance](configs/input_provenance.json). A [filename-based COCO train/validation split validator](scripts/verify_fpsd_splits.py) is provided (numeric COCO image IDs are local to each split and must not be used as a cross-split identity check). It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using `.venv\Scripts\activate`.
+The last command runs on **generated synthetic test inputs** only. Both archived notebooks previously passed synthetic Run All (15 November 2026), but the CI synthetic runner currently executes only the canonical M1/M2 notebook. See [notebook verification boundaries](docs/PORTABILITY.md). No new full-data execution or published-number reproduction is implied by documentation-only commits. The archived detector and COCO annotation SHA-256 values are recorded in [input provenance](configs/input_provenance.json). A [filename-based COCO train/validation split validator](scripts/verify_fpsd_splits.py) is provided (numeric COCO image IDs are local to each split and must not be used as a cross-split identity check). It must not be presented as reproduction of FPSD scores. For Windows, activate the environment using `.venv\Scripts\activate`.
 
 For lawful access to FPSD, original PauliYOLO weights and the full experiment path, see [reproducing the experiment](docs/REPRODUCING_EXPERIMENT.md) and [data access](docs/DATA_ACCESS.md). No dataset, cached features, or model weights are distributed here.
 
